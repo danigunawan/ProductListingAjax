@@ -1,0 +1,12 @@
+$('ul .errors').html("")
+$("div #transaction").html("").fadeIn(0)
+<% if @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    $("ul .errors").append($("<li/>").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $("div #transaction").append($("<div class= 'well'/>").html("<%= escape_javascript(@notice)%>")
+).fadeOut(3000)
+  $(".product-index").html("<%= escape_javascript(render 'index') %>")
+  $("#product-modal").modal("hide")
+<% end %>
